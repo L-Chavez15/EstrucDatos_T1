@@ -14,10 +14,8 @@ namespace Clases
 
         public override string ToString()
         {
-            Random random = new Random();
-            Codigo = random.Next(1000, 9999);
             return $"-----------------------------\n" +
-                   $"Código:"+Codigo+"\n" +
+                   $"Código: {Codigo} \n" +
                    $"Descripción: {Descripcion} \n" +
                    $"Peso: {Peso} kg \n" + 
                    $"-----------------------------";

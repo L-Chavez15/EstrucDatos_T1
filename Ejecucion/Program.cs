@@ -26,16 +26,17 @@ namespace Ejecucion
                 Console.WriteLine("3. INVENTARIO FINAL");
                 Console.WriteLine("4. BUSCAR");
                 Console.WriteLine("0. SALIR");
+                Console.Write("INGRESE OPCION: ");
+                op = int.Parse(Console.ReadLine());
                 Console.Write("------------------------------\n");
 
-
-                op = int.Parse(Console.ReadLine());
 
                 switch (op)
                 {
                     case 1:
                         Caja c = new Caja();
-
+                        Console.WriteLine("INGRESE SKU: ");
+                        c.Codigo = int.Parse(Console.ReadLine());
                         Console.Write("Descripcion:");
                         c.Descripcion = Console.ReadLine();
 
@@ -58,13 +59,14 @@ namespace Ejecucion
                         Caja a = pl.Desapilar();
                         while (a != null)
                         {
-                            if (a.Peso >= 50)
+                            if (a.Peso< 50)
                             {
-                                pesadas.Insertar(a);
+                                
+                                livianas.Insertar(a);
                             }
                             else
                             {
-                                livianas.Insertar(a);
+                                pesadas.Insertar(a);
                             }
                             a = pl.Desapilar();
                         }
@@ -74,7 +76,7 @@ namespace Ejecucion
                         pesadas.MostrarL();
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Cajas Livianas: ");
-
+                        Console.ResetColor();
                         pesadas.MostrarL();
                         livianas.MostrarL(); 
 
@@ -82,6 +84,7 @@ namespace Ejecucion
                         break;
 
                     case 4:
+                        pl.mostrar();
                         Console.Write("Código a buscar: ");
                         int cod = int.Parse(Console.ReadLine());
 
