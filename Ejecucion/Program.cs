@@ -20,11 +20,14 @@ namespace Ejecucion
             do
             {
                 Console.Clear();
-                Console.WriteLine("1. Ingresar caja");
-                Console.WriteLine("2. Mostrar pila");
-                Console.WriteLine("3. Inventario final");
-                Console.WriteLine("4. Buscar en inventario");
-                Console.WriteLine("0. Salir");
+                Console.Write("------------------------------\n");
+                Console.WriteLine("1. INGRESAR CAJA");
+                Console.WriteLine("2. MOSTRAR");
+                Console.WriteLine("3. INVENTARIO FINAL");
+                Console.WriteLine("4. BUSCAR");
+                Console.WriteLine("0. SALIR");
+                Console.Write("------------------------------\n");
+
 
                 op = int.Parse(Console.ReadLine());
 
@@ -33,10 +36,10 @@ namespace Ejecucion
                     case 1:
                         Caja c = new Caja();
 
-                        Console.WriteLine("Descripcion:");
+                        Console.Write("Descripcion:");
                         c.Descripcion = Console.ReadLine();
 
-                        Console.WriteLine("Peso:");
+                        Console.Write("Peso:");
                         c.Peso = double.Parse(Console.ReadLine());
 
                         pl.Apilar(c);
@@ -50,27 +53,36 @@ namespace Ejecucion
                         break;
 
                     case 3:
-                        
+
                         Console.WriteLine("Procesando inventario...");
                         Caja a = pl.Desapilar();
-                        if (a.Peso>=50)
+                        while (a != null)
                         {
-                            pesadas.Insertar(a);
+                            if (a.Peso >= 50)
+                            {
+                                pesadas.Insertar(a);
+                            }
+                            else
+                            {
+                                livianas.Insertar(a);
+                            }
+                            a = pl.Desapilar();
                         }
-                        else
-                        {
-                            livianas.Insertar(a);
-                        }
+                        
                         Console.WriteLine("CAJAS PESADAS: ");
+                        Console.ResetColor();
                         pesadas.MostrarL();
-
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Cajas Livianas: ");
-                        livianas.MostrarL();
+
+                        pesadas.MostrarL();
+                        livianas.MostrarL(); 
+
                         Console.ReadKey();
                         break;
 
                     case 4:
-                        Console.WriteLine("Código a buscar:");
+                        Console.Write("Código a buscar: ");
                         int cod = int.Parse(Console.ReadLine());
 
                         Console.WriteLine("Buscando en pesadas...");

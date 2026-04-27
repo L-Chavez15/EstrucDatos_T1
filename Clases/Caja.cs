@@ -19,7 +19,7 @@ namespace Clases
             return $"-----------------------------\n" +
                    $"Código:"+Codigo+"\n" +
                    $"Descripción: {Descripcion} \n" +
-                   $"Peso: {Peso} \n" + 
+                   $"Peso: {Peso} kg \n" + 
                    $"-----------------------------";
         }
 
